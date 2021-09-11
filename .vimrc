@@ -10,7 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
 " dev env
-"Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace'
 " other 
 Plug 'junegunn/goyo.vim'
 "Plug 'dpelle/vim-LanguageTool'
