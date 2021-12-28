@@ -64,7 +64,7 @@ set undofile
 set undodir=~/.config/nvim/undo
 
 " number of undo saved
-set undolevels=10000 
+set undolevels=1000
 
 set clipboard^=unnamedplus
 
@@ -79,7 +79,11 @@ function! WordProcessorMode()
         set formatprg=par
         setlocal wrap
         setlocal linebreak
-endfunction
+        inoremap . .<C-g>u
+        inoremap ! !<C-g>u
+        inoremap ? ?<C-g>u
+        inoremap : :<C-g>u
+    endfunction
 map <leader>w :call WordProcessorMode()<CR>
 
 " statusbar
