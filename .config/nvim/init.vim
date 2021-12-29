@@ -1,6 +1,5 @@
 let g:ale_disable_lsp = 1
 call plug#begin('~/.config/.nvim/plugged')
-" plugins between begin() and end()
 " Utility
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf'
@@ -8,7 +7,7 @@ Plug 'junegunn/fzf'
 Plug 'tpope/vim-fugitive'
 " Theme/ Interface
 Plug 'gruvbox-community/gruvbox'
-" Plug 'preservim/vim-colors-pencil'
+Plug 'preservim/vim-colors-pencil'
 Plug 'vim-airline/vim-airline'
 " dev env
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -40,6 +39,8 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+autocmd FileType markdown setlocal tw=80 et ts=2 sw=2
+
 " Enable folding (press za)
 set foldmethod=indent
 set foldlevel=99
@@ -49,7 +50,7 @@ set cursorline " Enable highlighting of the current line
 " Theme and Styling
 set termguicolors
 " colorscheme gruvbox
-colorscheme gruvbox
+colorscheme pencil
 
 let mapleader=" "
 let maplocalleader=","
@@ -62,7 +63,6 @@ set smartcase
 " save undo trees in files
 set undofile
 set undodir=~/.config/nvim/undo
-
 " number of undo saved
 set undolevels=1000
 
@@ -76,6 +76,7 @@ function! WordProcessorMode()
         map k gk
         setlocal spell spelllang=en_gb
         set complete+=s
+        set thesaurus+=/Users/nehe/.config/nvim/thesaurus/mthesaur.txt
         set formatprg=par
         setlocal wrap
         setlocal linebreak
@@ -100,13 +101,9 @@ silent! map <F6> :call TogBG()<CR>
 set re=0 " new regex engine
 let g:ale_linters = { 
             \'clojure': ['clj-kondo'], 
-            \'python': ['flake8', 'autopep8'], 
+            \'python': ['flake8', 'mypy', 'pylint', 'pyright'],
+            \'markdown' : ['vale']
             \}
-
-" lint on save only
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_insert_leave = 0
-
 
 " Map movement through errors without wrapping.
 nmap <silent> [e <Plug>(ale_previous_wrap)
