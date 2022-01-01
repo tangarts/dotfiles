@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 HIST_STAMPS="yyyy-mm-dd"
 
 alias h='history'
-alias f='ranger'
+alias f="lf -config ${XDG_CACHE_HOME:-$HOME/.cache}/lf/lfcd"
 alias py='python'
 alias ipy='ipython'
 alias e=$EDITOR
@@ -32,7 +32,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-#
+
 # pyenv
 eval "$(pyenv init -)"
 
@@ -43,3 +43,20 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+
+bindkey -s '^o' 'lfcd\n'  # zsh
