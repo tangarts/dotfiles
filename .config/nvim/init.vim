@@ -2,7 +2,7 @@ let g:ale_disable_lsp = 1
 call plug#begin('~/.config/.nvim/plugged')
 " Utility
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 " Git Support
 Plug 'tpope/vim-fugitive'
 " Theme/ Interface
@@ -15,16 +15,21 @@ Plug 'Olical/conjure', { 'for': 'clojure' }
 " other 
 Plug 'dense-analysis/ale'
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " basics
 filetype plugin indent on
+set title
 set number
-"
+set mouse=a
+" Searching
+set ignorecase
+set smartcase
 " search down into subfolders- 
 " tab completion for all file related tasks
 set path+=**
-
+set rtp+=/opt/homebrew/opt/fzf
 " split screen opens to the right and below
 set splitright splitbelow
 
@@ -39,34 +44,24 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-autocmd FileType markdown setlocal tw=80 et ts=2 sw=2
-
 " Enable folding (press za)
 set foldmethod=indent
 set foldlevel=99
 
 set cursorline " Enable highlighting of the current line
-
-" Theme and Styling
 set termguicolors
-" colorscheme gruvbox
+"colorscheme gruvbox
 colorscheme pencil
 
 let mapleader=" "
 let maplocalleader=","
 inoremap jk <ESC>
-
-" Searching
-set ignorecase
-set smartcase
-
 " save undo trees in files
 set undofile
 set undodir=~/.config/nvim/undo
 " number of undo saved
 set undolevels=1000
-
-set clipboard^=unnamedplus
+set re=0 " new regex engine
 
 " Word Processor mode - writing
 function! WordProcessorMode()
@@ -85,10 +80,8 @@ function! WordProcessorMode()
         inoremap ? ?<C-g>u
         inoremap : :<C-g>u
     endfunction
-map <leader>w :call WordProcessorMode()<CR>
+map <leader>p :call WordProcessorMode()<CR>
 
-" statusbar
-let g:airline_powerline_fonts = 1
 
 function! TogBG()
     let &background = ( &background == "dark"? "light" : "dark" )
@@ -98,7 +91,20 @@ function! TogBG()
 endfunction
 silent! map <F6> :call TogBG()<CR>
 
-set re=0 " new regex engine
+map <leader>n :NERDTreeToggle<CR>
+" Replace ex mode with gq
+map Q gq
+
+
+" statusbar
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|markdown|vimwiki|org|rst|tex|text'
+
+let g:vimwiki_global_ext = 0
+let g:vimwiki_list = [
+            \{'path': '~/Documents/', 
+            \'syntax': 'markdown', 'ext': '.md'}]
+
 let g:ale_linters = { 
             \'clojure': ['clj-kondo'], 
             \'python': ['flake8', 'mypy', 'pylint', 'pyright'],
@@ -110,8 +116,28 @@ nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
 
 
-"""""""""" COC """""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""
+" Function for toggling the bottom statusbar:
+let s:hidden_all = 1
+function! ToggleHiddenAll()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set noshowmode
+        set noruler
+        set laststatus=0
+        set noshowcmd
+    else
+        let s:hidden_all = 0
+        set showmode
+        set ruler
+        set laststatus=2
+        set showcmd
+    endif
+endfunction
+nnoremap <leader>h :call ToggleHiddenAll()<CR>
+
+"" ========================================
+"" =========== COC ========================
+"" ========================================
 
 "" Use `[g` and `]g` to navigate diagnostics
 "" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
