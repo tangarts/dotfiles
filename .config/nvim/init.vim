@@ -1,5 +1,5 @@
 let g:ale_disable_lsp = 1
-call plug#begin('~/.config/.nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " Utility
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf.vim'
