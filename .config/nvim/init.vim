@@ -32,6 +32,9 @@ set path+=**
 set rtp+=/opt/homebrew/opt/fzf
 " split screen opens to the right and below
 set splitright splitbelow
+" show tabs and eol
+set list
+set listchars=tab:▸\ ,eol:¬
 
 " shortcutting split navigation, saves a keypress
 map <C-h> <C-w>h
@@ -61,7 +64,6 @@ set undofile
 set undodir=~/.config/nvim/undo
 " number of undo saved
 set undolevels=1000
-set re=0 " new regex engine
 
 " Word Processor mode - writing
 function! WordProcessorMode()
