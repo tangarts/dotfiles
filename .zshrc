@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/nehe/.oh-my-zsh"
+export ZSH="$XDG_DATA_HOME"/oh-my-zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=60'
 ZSH_THEME="powerlevel10k/powerlevel10k"

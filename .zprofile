@@ -31,9 +31,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
-export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
-export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
+#export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+#export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+#export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
+export PYENV_ROOT="$HOME"/.pyenv
 
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
