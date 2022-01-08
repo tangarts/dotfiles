@@ -7,7 +7,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 stty stop undef         # Disable ctrl-s to freeze terminal.
 
 # Adds `~/.local/bin` to $PATH
-#export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 path+="$HOME/.local/bin"
 
 # vi mode

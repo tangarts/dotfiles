@@ -24,11 +24,13 @@ alias t='todo.sh'
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+
 plugins=(
     git
     zsh-syntax-highlighting
     zsh-autosuggestions
-
+    fzf
 )
 
 source $ZSH/oh-my-zsh.sh

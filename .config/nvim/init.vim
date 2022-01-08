@@ -28,13 +28,10 @@ set ignorecase
 set smartcase
 " search down into subfolders- 
 " tab completion for all file related tasks
-set path+=**
+ set path+=**
 set rtp+=/opt/homebrew/opt/fzf
 " split screen opens to the right and below
 set splitright splitbelow
-" show tabs and eol
-set list
-set listchars=tab:▸\ ,eol:¬
 
 " shortcutting split navigation, saves a keypress
 map <C-h> <C-w>h
@@ -53,7 +50,7 @@ set foldlevel=99
 
 set cursorline " Enable highlighting of the current line
 set termguicolors
-"colorscheme gruvbox
+" colorscheme gruvbox
 colorscheme pencil
 
 let mapleader=" "
@@ -103,9 +100,19 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|markdown|vimwiki|org|rst|tex|text'
 
 let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [
-            \{'path': '~/Documents/', 
-            \'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{
+            \ 'syntax': 'markdown', 
+            \ 'ext': '.md',
+            \ 'path': '$HOME/Documents/', 
+            \ 'template_path': '$HOME/.pandoc/',
+            \ 'template_default':'Github',
+            \ 'template_ext':'.html5',
+            \ 'path_html': '$HOME/Documents/_site',
+            \ 'custom_wiki2html': '$HOME/Documents/wiki2html.sh',
+            \ 'auto_tags': 1,
+            \ 'links_space_char' : '_',
+            \ }]
+let g:vimwiki_folding='expr'
 
 let g:ale_linters = { 
             \'clojure': ['clj-kondo'], 
@@ -116,26 +123,6 @@ let g:ale_linters = {
 " Map movement through errors without wrapping.
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
-
-
-" Function for toggling the bottom statusbar:
-let s:hidden_all = 1
-function! ToggleHiddenAll()
-    if s:hidden_all  == 0
-        let s:hidden_all = 1
-        set noshowmode
-        set noruler
-        set laststatus=0
-        set noshowcmd
-    else
-        let s:hidden_all = 0
-        set showmode
-        set ruler
-        set laststatus=2
-        set showcmd
-    endif
-endfunction
-nnoremap <leader>h :call ToggleHiddenAll()<CR>
 
 "" ========================================
 "" =========== COC ========================
