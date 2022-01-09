@@ -1,0 +1,39 @@
+# Change working dir in shell to last dir in lf on exit (adapted from ranger).
+#
+# You need to either copy the content of this file to your shell rc file
+# (e.g. ~/.bashrc) or source this file directly:
+#
+#     LFCD="/path/to/lfcd.sh"
+#     if [ -f "$LFCD" ]; then
+#         source "$LFCD"
+#     fi
+#
+# You may also like to assign a key to this command:
+#
+#     bind '"\C-o":"lfcd\C-m"'  # bash
+#     bindkey -s '^o' 'lfcd\n'  # zsh
+#
+
+# Basic vars
+set shell bash
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set period 1
+
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
+}}
+
+map D delete
+map A rename # at the very end
+map a push :mkdir<space>
+
+
