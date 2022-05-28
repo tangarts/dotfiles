@@ -5,7 +5,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf.vim'
 " Git Support
 Plug 'tpope/vim-fugitive'
-" Theme/ Interface
+" Theme/Interface
 Plug 'gruvbox-community/gruvbox'
 Plug 'preservim/vim-colors-pencil'
 Plug 'vim-airline/vim-airline'
@@ -20,6 +20,7 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 Plug 'vimwiki/vimwiki'
+
 call plug#end()
 
 " basics
@@ -32,7 +33,7 @@ set ignorecase
 set smartcase
 " search down into subfolders- 
 " tab completion for all file related tasks
- set path+=**
+set path+=**
 set rtp+=/opt/homebrew/opt/fzf
 " split screen opens to the right and below
 set splitright splitbelow
@@ -65,6 +66,8 @@ set undofile
 set undodir=~/.config/nvim/undo
 " number of undo saved
 set undolevels=1000
+" Replace ex mode with gq
+map Q gq
 
 " Word Processor mode - writing
 function! WordProcessorMode()
@@ -87,7 +90,7 @@ map <leader>p :call WordProcessorMode()<CR>
 
 
 function! TogBG()
-    let &background = ( &background == "dark"? "light" : "dark" )
+    let &background = ( &background == "dark" ? "light" : "dark" )
     if exists("g:colors_name")
         exe "colorscheme " . g:colors_name
     endif
@@ -95,14 +98,12 @@ endfunction
 silent! map <F6> :call TogBG()<CR>
 
 map <leader>n :NERDTreeToggle<CR>
-" Replace ex mode with gq
-map Q gq
-
 
 " statusbar
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|markdown|vimwiki|org|rst|tex|text'
 
+" vimwiki
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{
             \ 'syntax': 'markdown', 
@@ -118,6 +119,7 @@ let g:vimwiki_list = [{
             \ }]
 let g:vimwiki_folding='expr'
 
+" ale
 let g:ale_linters = { 
             \'clojure': ['clj-kondo'], 
             \'python': ['flake8', 'mypy', 'pylint', 'pyright'],
