@@ -15,7 +15,6 @@ alias f="lf -config ${XDG_CACHE_HOME:-$HOME/.cache}/lf/lfcd"
 alias py='python'
 alias ipy='ipython'
 alias e=$EDITOR
-alias v=$EDITOR
 
 # todo
 export TODOTXT_DEFAULT_ACTION=ls

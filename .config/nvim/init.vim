@@ -16,11 +16,11 @@ Plug 'tpope/vim-dispatch'
 Plug 'clojure-vim/vim-jack-in'
 " Only in Neovim:
 Plug 'radenling/vim-dispatch-neovim'
-" other 
+" other  
 Plug 'dense-analysis/ale'
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
-Plug 'vimwiki/vimwiki'
-
+Plug 'lervag/wiki.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " basics
@@ -50,11 +50,11 @@ set shiftwidth=4
 set expandtab
 
 " Enable folding (press za)
-set foldmethod=indent
+set foldmethod=expr
 set foldlevel=99
 
 set cursorline " Enable highlighting of the current line
-set termguicolors
+set t_Co=256 " termguicolors
 " colorscheme gruvbox
 colorscheme pencil
 
@@ -88,7 +88,6 @@ function! WordProcessorMode()
     endfunction
 map <leader>p :call WordProcessorMode()<CR>
 
-
 function! TogBG()
     let &background = ( &background == "dark" ? "light" : "dark" )
     if exists("g:colors_name")
@@ -103,21 +102,9 @@ map <leader>n :NERDTreeToggle<CR>
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|markdown|vimwiki|org|rst|tex|text'
 
-" vimwiki
-let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{
-            \ 'syntax': 'markdown', 
-            \ 'ext': '.md',
-            \ 'path': '$HOME/Documents/', 
-            \ 'template_path': '$HOME/.pandoc/',
-            \ 'template_default':'Github',
-            \ 'template_ext':'.html5',
-            \ 'path_html': '$HOME/Documents/_site',
-            \ 'custom_wiki2html': '$HOME/Documents/wiki2html.sh',
-            \ 'auto_tags': 1,
-            \ 'links_space_char' : '_',
-            \ }]
-let g:vimwiki_folding='expr'
+let g:wiki_root = '~/Documents'
+let g:wiki_filetypes = ['md']
+let g:wiki_link_extension = '.md'
 
 " ale
 let g:ale_linters = { 
@@ -129,3 +116,21 @@ let g:ale_linters = {
 " Map movement through errors without wrapping.
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  autotag = {
+    enable = true,
+  },
+  endwise = {
+    enable = true
+  },
+  indent = {
+    enable = true
+  },
+  }
+EOF
