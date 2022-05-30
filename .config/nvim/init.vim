@@ -105,7 +105,7 @@ let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|markdown|vi
 let g:wiki_root = '~/Documents'
 let g:wiki_filetypes = ['md']
 let g:wiki_link_extension = '.md'
-
+let g:wiki_link_target_type = 'md'
 " ale
 let g:ale_linters = { 
             \'clojure': ['clj-kondo'], 
