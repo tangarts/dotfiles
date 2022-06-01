@@ -63,6 +63,12 @@ lfcd () {
 
 bindkey -s '^o' 'lfcd\n'  # zsh
 
+# if type rg &> /dev/null; then
+#     export FZF_DEFAULT_COMMAND='rg --files --hidden'
+# fi
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 # History
 HISTFILE="$HOME/.history"
 export HISTSIZE=100000           # 
