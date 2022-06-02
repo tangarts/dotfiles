@@ -1,5 +1,4 @@
 #!/bin/zsh
-
 # profile file. Runs on login. Environmental variables are set here.
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -25,6 +24,7 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+# export JDK_HOME="$(/usr/libexec/java_home)"
 
 # export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 # export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"

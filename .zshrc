@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 HIST_STAMPS="yyyy-mm-dd"
 
 alias h='history'
-alias f="lf -config ${XDG_CACHE_HOME:-$HOME/.cache}/lf/lfcd"
+alias f="lf -config ${XDG_CONFIG_HOME:-$HOME/.config}/lf/lfcd"
 alias py='python'
 alias ipy='ipython'
 alias e=$EDITOR
