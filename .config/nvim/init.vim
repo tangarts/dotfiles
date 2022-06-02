@@ -12,14 +12,14 @@ Plug 'vim-airline/vim-airline'
 " dev env
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Olical/conjure', { 'for': 'clojure' }
-Plug 'tpope/vim-dispatch'
-Plug 'clojure-vim/vim-jack-in'
+Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
+Plug 'clojure-vim/vim-jack-in', { 'for': 'clojure' }
 " Only in Neovim:
-Plug 'radenling/vim-dispatch-neovim'
+Plug 'radenling/vim-dispatch-neovim', { 'for': 'clojure' }
 " other  
+Plug 'lervag/wiki.vim'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
-Plug 'lervag/wiki.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
