@@ -20,6 +20,8 @@ set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
 set period 1
+set info time
+
 
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
@@ -35,5 +37,3 @@ cmd delete ${{
 map D delete
 map A rename # at the very end
 map a push :mkdir<space>
-
-
