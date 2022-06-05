@@ -1,0 +1,22 @@
+{
+
+    "languageserver": {
+    "clojure-lsp": {
+      "command": "clojure-lsp",
+      "filetypes": ["clojure"],
+      "disableDiagnostics": true,
+      "rootPatterns": ["deps.edn", "project.clj", "shadow-cljs.edn"],
+      "additionalSchemes": ["jar", "zipfile"],
+      "trace.server": "verbose",
+      "initializationOptions": {
+        "project-specs": [{
+          "project-path": "deps.edn",
+          "classpath-cmd": ["clj", "-Spath"]
+        }],
+        "use-metadata-for-privacy?": true,
+        "ignore-classpath-directories": true
+      }
+    }
+  },
+  "coc.preferences.diagnostic.displayByAle": true
+}

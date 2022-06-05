@@ -50,7 +50,7 @@ set shiftwidth=4
 set expandtab
 
 " Enable folding (press za)
-set foldmethod=expr
+set foldmethod=syntax
 set foldlevel=99
 
 set cursorline " Enable highlighting of the current line
